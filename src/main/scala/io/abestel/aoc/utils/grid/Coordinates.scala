@@ -7,3 +7,12 @@ case class Coordinates(x: X, y: Y) {
       y = Y(y.value + deltaY),
     )
 }
+
+object Coordinates {
+  implicit val order: Ordering[Coordinates] =
+    Ordering
+      .by[Coordinates, Int](_.y.value)
+      .orElse(
+        Ordering.by(_.x.value)
+      )
+}
